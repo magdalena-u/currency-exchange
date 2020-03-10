@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    container_name: currency-frontend
+    restart: always
+    command: bash -c "yarn start"
+
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - 8000:80
+    container_name: currency-nginx
+    restart: always
+    depends_on:
+      - frontend
