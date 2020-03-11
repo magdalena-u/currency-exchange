@@ -1,21 +1,35 @@
-import React from "react";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import React from 'react';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
 
-import { routesList } from "./routesList";
+import { routesList } from './routesList';
+import { colors, fontFamily } from 'styles/variables';
+
+const GlobalStyle = createGlobalStyle`
+ 
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: ${fontFamily.lato};
+        color: ${colors.black};
+        background-color: ${colors.blueGray};
+    }
+`;
 
 export const Routes = () => (
-  <React.Suspense fallback="loading...">
-    <BrowserRouter>
-      <Switch>
-        {routesList.map(route => (
-          <Route
-            key={route.path}
-            exact={route.exact}
-            path={route.path}
-            component={route.component}
-          />
-        ))}
-      </Switch>
-    </BrowserRouter>
-  </React.Suspense>
+    <React.Suspense fallback="loading...">
+        <GlobalStyle />
+        <BrowserRouter>
+            <Switch>
+                {routesList.map(route => (
+                    <Route
+                        key={route.path}
+                        exact={route.exact}
+                        path={route.path}
+                        component={route.component}
+                    />
+                ))}
+            </Switch>
+        </BrowserRouter>
+    </React.Suspense>
 );
