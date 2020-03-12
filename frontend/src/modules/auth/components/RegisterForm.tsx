@@ -1,8 +1,9 @@
 import React from 'react';
 import { Formik, Field } from 'formik';
 
-import { registerSchema } from '../schema';
-import { Title, FormContainer, Button, RouteButton, FormWrapper } from './Form';
+import { registerSchema } from 'modules/auth/schema';
+import { Button } from 'modules/common/Button';
+import { Title, FormContainer, RouteButton, FormWrapper } from './Form';
 import { Input } from './Input';
 
 interface Props {
