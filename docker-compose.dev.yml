@@ -9,5 +9,14 @@ services:
       - ./frontend:/frontend
       - /frontend/node_modules
 
+  backend:
+    ports:
+      - 4000:4000
+    restart: unless-stopped
+    volumes:
+      - ./backend:/backend
+      - /backend/node_modules
+      - /backend/dist
+
   nginx:
     restart: unless-stopped

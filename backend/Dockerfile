@@ -1,6 +1,6 @@
 FROM node:latest
 
-WORKDIR /frontend
+WORKDIR /backend
 
 COPY ./package.json ./
 COPY ./yarn.lock ./
