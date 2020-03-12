@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Form } from 'formik';
 
 import { colors, fontSize } from 'styles/variables';
+import { Button } from 'modules/common/Button';
 
 export const FormWrapper = styled.div`
     position: absolute;
@@ -30,27 +31,6 @@ export const FormContainer = styled(Form)`
 export const Title = styled.h1`
     font-size: ${fontSize.extraLarge};
     margin: 0 0 1rem;
-`;
-
-export const Button = styled.button`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    color: ${colors.white};
-    outline: transparent 0;
-    border: none;
-    border-radius: 5px;
-    font-size: ${fontSize.normal};
-    background-color: ${colors.green};
-    padding: 0.5rem 1rem;
-
-    cursor: pointer;
-
-    :focus,
-    :active {
-        outline: transparent 0;
-    }
 `;
 
 export const RouteButton = styled(Button)`

@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux';
 
-export const rootReducer = combineReducers({});
+import { currency } from 'modules/currencies/reducers';
+
+export const rootReducer = combineReducers({
+    currency: currency,
+});
 
 export type AppState = ReturnType<typeof rootReducer>;
