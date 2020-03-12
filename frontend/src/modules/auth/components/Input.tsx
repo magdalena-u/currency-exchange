@@ -1,5 +1,6 @@
 import React from 'react';
 import { FieldProps } from 'formik';
+
 import { ErrorMessage, InputContainer, Label, InputStyled } from './Form';
 
 interface Props {
