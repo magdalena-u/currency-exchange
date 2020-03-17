@@ -1,16 +1,12 @@
 import { Injectable } from '@nestjs/common';
-
-type User = {
-  email: string;
-  password: string;
-};
+import { User } from './models/user.model';
 
 @Injectable()
 export class UsersService {
   private readonly users: User[];
 
   constructor() {
-    this.users = [{ email: 'magda@pl.pl', password: 'changeIt' }];
+    this.users = [{ id: 1, email: 'magda@pl.pl', password: 'changeIt' }];
   }
 
   async findUser(email: string): Promise<User | undefined> {
