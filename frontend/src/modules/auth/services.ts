@@ -1,6 +1,6 @@
-export const authServiceFactory = (apiProxy: string, apiBase: string) => {
+export const authServiceFactory = (apiBase: string) => {
     const login = (values: Credential) =>
-        fetch(`${apiProxy}${apiBase}/auth/login`, {
+        fetch(`${apiBase}/auth/login`, {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
