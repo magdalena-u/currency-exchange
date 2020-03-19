@@ -11,6 +11,7 @@ const Currency: React.FC<Props> = props => {
     React.useEffect(() => {
         props.currencyRequest();
     }, []);
+
     return <CurrencyTable {...props} />;
 };
 
