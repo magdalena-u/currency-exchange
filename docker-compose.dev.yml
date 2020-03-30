@@ -18,5 +18,10 @@ services:
       - /backend/node_modules
       - /backend/dist
 
+  postgres:
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+
   nginx:
     restart: unless-stopped
