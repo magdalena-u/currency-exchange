@@ -1,15 +1,23 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotAcceptableException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+
 import { User } from './models/user.model';
+import { Account } from './users.entity';
 
 @Injectable()
 export class UsersService {
-  private readonly users: User[];
-
-  constructor() {
-    this.users = [{ id: 1, email: 'magda@pl.pl', password: 'changeIt' }];
-  }
+  constructor(
+    @InjectRepository(Account)
+    private readonly userRepo: Repository<Account>,
+  ) {}
 
   async findUser(email: string): Promise<User | undefined> {
-    return this.users.find(user => user.email === email);
+    try {
+      const user = this.userRepo.findOne(email);
+      return user;
+    } catch {
+      throw new NotAcceptableException('User not exist');
+    }
   }
 }
