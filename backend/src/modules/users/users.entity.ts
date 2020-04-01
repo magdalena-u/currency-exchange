@@ -10,7 +10,4 @@ export class Account {
 
   @Column()
   password: string;
-
-  @Column()
-  currency_id: number;
 }

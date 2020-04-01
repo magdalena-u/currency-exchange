@@ -1,3 +1,9 @@
+export interface RegisterDataState {
+    isFetching: boolean;
+    isSucceed: boolean;
+    error: string;
+}
+
 export interface LoginDataState {
     token: string;
 }
