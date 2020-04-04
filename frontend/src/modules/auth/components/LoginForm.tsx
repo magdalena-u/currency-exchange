@@ -1,37 +1,39 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Formik, Field } from 'formik';
 
 import { loginSchema } from 'modules/auth/schema';
 import { Button } from 'modules/common/Button';
-import { FormWrapper, Title, FormContainer, RouteButton } from './Form';
+import { FormWrapperLogin, Title, FormContainer } from './Form';
 import { Input } from './Input';
 import { Credentials } from '../models';
 
+import { colors } from 'styles/variables';
+
 interface Props {
-    handleClick: (arg: boolean) => void;
     loginRequest: (values: Credentials) => void;
+    isLogin?: boolean;
 }
 
 const initialValues = { email: '', password: '' };
 
-export const LoginForm: React.FC<Props> = ({ handleClick, loginRequest }) => (
-    <FormWrapper>
+const ButtonWrapper = styled(Button)`
+    background-color: ${colors.blue};
+`;
+
+export const LoginForm: React.FC<Props> = ({ loginRequest, isLogin }) => (
+    <FormWrapperLogin isLogin={isLogin}>
         <Formik
             initialValues={initialValues}
             validationSchema={loginSchema()}
             onSubmit={loginRequest}
         >
             <FormContainer>
-                <Title>{'Login'}</Title>
+                <Title>Login</Title>
                 <Field type="email" label="E-mail" name="email" component={Input} />
                 <Field type="password" label="Password" name="password" component={Input} />
-
-                <Button type="submit">{'Login'} </Button>
-
-                <RouteButton onClick={() => handleClick(false)}>
-                    {'I would like to join'}
-                </RouteButton>
+                <ButtonWrapper type="submit">Login</ButtonWrapper>
             </FormContainer>
         </Formik>
-    </FormWrapper>
+    </FormWrapperLogin>
 );

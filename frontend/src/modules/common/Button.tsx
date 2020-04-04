@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { colors, fontSize } from 'styles/variables';
+import { colors, fontSize, fontWeight } from 'styles/variables';
 
 export const Button = styled.button`
     display: flex;
@@ -12,8 +12,10 @@ export const Button = styled.button`
     border: none;
     border-radius: 5px;
     font-size: ${fontSize.normal};
-    background-color: ${colors.green};
-    padding: 0.5rem 1rem;
+    background-color: transparent;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-weight: ${fontWeight.bold};
 
     cursor: pointer;
 

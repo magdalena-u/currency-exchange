@@ -2,13 +2,35 @@ import styled from 'styled-components';
 import { Form } from 'formik';
 
 import { colors, fontSize } from 'styles/variables';
-import { Button } from 'modules/common/Button';
 
-export const FormWrapper = styled.div`
+interface WrapperProps {
+    isLogin?: boolean;
+    transformA?: string;
+    transformB?: string;
+}
+export const FormWrapper = styled.div<WrapperProps>`
+    width: 50%;
+    display: flex;
+    justify-content: center;
+
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+`;
+
+export const FormWrapperRegister = styled(FormWrapper)`
+    transform: ${props => (props.isLogin ? 'translateX(50%);' : 'translateX(0%);')};
+    opacity: ${props => (props.isLogin ? '0;' : '1;')};
+    transition: ${props =>
+        props.isLogin ? 'transform 0.8s, opacity 0.3s' : 'opacity 0.3s 0.2s, transform 0.5s'};
+    z-index: ${props => (props.isLogin ? '-1' : '0')};
+`;
+
+export const FormWrapperLogin = styled(FormWrapper)`
+    transform: ${props => (props.isLogin ? 'translateX(100%);' : 'translateX(50%);')};
+    opacity: ${props => (props.isLogin ? '1;' : '0;')};
+    transition: ${props =>
+        props.isLogin ? 'transform 0.8s, opacity 0.3s 0.2s' : 'opacity 0.3s, transform 0.5s'};
+    z-index: ${props => (props.isLogin ? '0' : '-1')};
 `;
 
 export const FormContainer = styled(Form)`
@@ -22,7 +44,7 @@ export const FormContainer = styled(Form)`
     color: ${colors.black};
     box-shadow: 1px 1px 15px 0px rgb(0, 0, 0, 0.4);
 
-    border-radius: 20px;
+    border-radius: 6px;
     width: 18rem;
     height: 25rem;
     padding: 2rem;
@@ -31,15 +53,6 @@ export const FormContainer = styled(Form)`
 export const Title = styled.h1`
     font-size: ${fontSize.extraLarge};
     margin: 0 0 1rem;
-`;
-
-export const RouteButton = styled(Button)`
-    background-color: transparent;
-    color: ${colors.darkGrey};
-
-    text-decoration: underline;
-    font-size: ${fontSize.small};
-    margin-top: 1rem;
 `;
 
 export const InputContainer = styled.div`
@@ -76,6 +89,6 @@ export const ErrorMessage = styled.span`
     position: absolute;
     bottom: 0;
 
-    color: ${colors.red};
+    color: ${colors.pink};
     font-size: ${fontSize.small};
 `;

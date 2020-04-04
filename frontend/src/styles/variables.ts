@@ -5,8 +5,11 @@ export const colors = {
     black: '#000000',
     blueGray: '#E4E6EA',
     darkGrey: '#707a8f',
-    green: '#00cccc',
-    red: '#b30000',
+    blueDark: '#1E9199',
+    blue: '#5ED7E0',
+    yellow: '#CE9E04',
+    yellowLight: '#E8BE35',
+    pink: '#C4233C',
 };
 
 export const mediaQueries = {

@@ -1,17 +1,24 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Formik, Field } from 'formik';
 
+import { colors } from 'styles/variables';
 import { registerSchema } from 'modules/auth/schema';
 import { Button } from 'modules/common/Button';
-import { Title, FormContainer, RouteButton, FormWrapper } from './Form';
+import { Title, FormContainer, FormWrapperRegister } from './Form';
 import { Input } from './Input';
 
 import { Credentials } from 'modules/auth/models';
 
 interface Props {
-    handleClick: (arg: boolean) => void;
     registerRequest: (arg: Credentials) => void;
+    isLogin?: boolean;
 }
+
+const ButtonWrapper = styled(Button)`
+    background-color: ${colors.yellowLight};
+`;
+
 const inputs = [
     { name: 'email', type: 'text', value: 'email', label: 'E-mail' },
     { name: 'password', type: 'password', value: 'password', label: 'Password' },
@@ -29,8 +36,8 @@ const initialData = {
     confirmPassword: '',
 };
 
-export const RegisterForm: React.FC<Props> = ({ handleClick, registerRequest }) => (
-    <FormWrapper>
+export const RegisterForm: React.FC<Props> = ({ registerRequest, isLogin }) => (
+    <FormWrapperRegister isLogin={isLogin}>
         <Formik
             initialValues={initialData}
             validationSchema={registerSchema()}
@@ -38,7 +45,7 @@ export const RegisterForm: React.FC<Props> = ({ handleClick, registerRequest }) 
         >
             {({ handleSubmit }) => (
                 <FormContainer onSubmit={handleSubmit}>
-                    <Title>{'Register'}</Title>
+                    <Title>Register</Title>
                     {inputs.map(input => (
                         <Field
                             key={input.name}
@@ -48,12 +55,9 @@ export const RegisterForm: React.FC<Props> = ({ handleClick, registerRequest }) 
                             component={Input}
                         />
                     ))}
-                    <Button type="submit">{'Sign up'}</Button>
-                    <RouteButton onClick={() => handleClick(true)}>
-                        {'I would like to login'}
-                    </RouteButton>
+                    <ButtonWrapper type="submit">Sign up</ButtonWrapper>
                 </FormContainer>
             )}
         </Formik>
-    </FormWrapper>
+    </FormWrapperRegister>
 );
