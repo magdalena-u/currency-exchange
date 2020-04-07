@@ -1,5 +1,5 @@
 import { Action } from 'config/rootAction';
-import { LoginDataState, Credentials } from './models';
+import { Credentials } from './models';
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export type RegisterRequestAction = Action<typeof REGISTER_REQUEST>;
@@ -22,9 +22,8 @@ export const loginRequest = (values: Credentials) => ({ type: LOGIN_REQUEST, pay
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export type LoginSuccessAction = Action<typeof LOGIN_SUCCESS>;
-export const loginSuccess = (loginData: LoginDataState) => ({
+export const loginSuccess = () => ({
     type: LOGIN_SUCCESS,
-    payload: loginData,
 });
 
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';

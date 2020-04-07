@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 export const authServiceFactory = (apiBase: string) => {
     const register = (values: Credential) =>
         fetch(`${apiBase}/auth/register`, {
@@ -18,7 +20,12 @@ export const authServiceFactory = (apiBase: string) => {
             method: 'POST',
             body: JSON.stringify(values),
         })
-            .then(async res => res.ok && res.json())
+            .then(async res => {
+                if (res.ok) {
+                    const { accessToken } = await res.json();
+                    Cookies.set('token', accessToken);
+                }
+            })
             .catch(err => {
                 throw err;
             });

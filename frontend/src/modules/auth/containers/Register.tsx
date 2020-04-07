@@ -1,8 +1,10 @@
 import React from 'react';
-import { RegisterForm } from 'modules/auth/components/RegisterForm';
-import { AppState } from 'config/rootReducer';
 import { connect } from 'react-redux';
+
+import { AppState } from 'config/rootReducer';
 import { registerRequest } from 'modules/auth/actions';
+
+import { RegisterForm } from 'modules/auth/components/RegisterForm';
 
 interface EventProps {
     isLogin?: boolean;

@@ -4,15 +4,23 @@ import { Formik, Field } from 'formik';
 
 import { colors } from 'styles/variables';
 import { registerSchema } from 'modules/auth/schema';
+import { Credentials } from 'modules/auth/models';
+
 import { Button } from 'modules/common/Button';
+import { Spinner, SpinnerCompleted } from 'modules/common/Spinner';
+
 import { Title, FormContainer, FormWrapperRegister } from './Form';
 import { Input } from './Input';
 
-import { Credentials } from 'modules/auth/models';
+interface PropsRegister {
+    isFetching: boolean;
+    isSucceed: boolean;
+}
 
 interface Props {
     registerRequest: (arg: Credentials) => void;
     isLogin?: boolean;
+    register: PropsRegister;
 }
 
 const ButtonWrapper = styled(Button)`
@@ -36,7 +44,7 @@ const initialData = {
     confirmPassword: '',
 };
 
-export const RegisterForm: React.FC<Props> = ({ registerRequest, isLogin }) => (
+export const RegisterForm: React.FC<Props> = ({ registerRequest, isLogin, ...props }) => (
     <FormWrapperRegister isLogin={isLogin}>
         <Formik
             initialValues={initialData}
@@ -59,5 +67,7 @@ export const RegisterForm: React.FC<Props> = ({ registerRequest, isLogin }) => (
                 </FormContainer>
             )}
         </Formik>
+        {props.register.isFetching && <Spinner />}
+        {props.register.isSucceed && <SpinnerCompleted />}
     </FormWrapperRegister>
 );

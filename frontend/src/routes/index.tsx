@@ -5,6 +5,8 @@ import { createGlobalStyle } from 'styled-components';
 import { routesList } from './routesList';
 import { colors, fontFamily } from 'styles/variables';
 
+import { PrivateRouteContainer } from './PrivateRoute';
+
 const GlobalStyle = createGlobalStyle`
  
     body {
@@ -21,14 +23,23 @@ export const Routes = () => (
         <GlobalStyle />
         <BrowserRouter>
             <Switch>
-                {routesList.map(route => (
-                    <Route
-                        key={route.path}
-                        exact={route.exact}
-                        path={route.path}
-                        component={route.component}
-                    />
-                ))}
+                {routesList.map(route =>
+                    route.isAuthenticated ? (
+                        <PrivateRouteContainer
+                            key={route.path}
+                            exact={route.exact}
+                            path={route.path}
+                            component={route.component}
+                        />
+                    ) : (
+                        <Route
+                            key={route.path}
+                            exact={route.exact}
+                            path={route.path}
+                            component={route.component}
+                        />
+                    ),
+                )}
             </Switch>
         </BrowserRouter>
     </React.Suspense>
