@@ -6,7 +6,7 @@ import { LoginForm } from 'modules/auth/components/LoginForm';
 import { loginRequest } from 'modules/auth/actions';
 
 interface EventProps {
-    handleClick: (arg: boolean) => void;
+    isLogin?: boolean;
 }
 type Props = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & EventProps;
 

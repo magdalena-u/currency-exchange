@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { UsersService } from '../users/users.service';
 import { LoginUserDto, RegisterUserDto } from './dto/loginUser.dto';
-import { JwtToken } from './models/jwtToken.model';
 import { Account } from '../users/users.entity';
 
 @Injectable()
@@ -21,8 +20,9 @@ export class AuthService {
     return await this.usersService.findUser(email);
   }
 
-  async login(loginData: LoginUserDto): Promise<JwtToken> {
-    const user = await this.usersService.findUser(loginData.email);
+  async login(loginData: LoginUserDto) {
+    const { email } = loginData;
+    const user = await this.userRepo.findOne({ email });
 
     if (user && user.password !== loginData.password) {
       throw new NotAcceptableException('Incorrect credentials');

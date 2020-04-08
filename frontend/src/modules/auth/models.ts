@@ -4,13 +4,9 @@ export interface RegisterDataState {
     error: string;
 }
 
-export interface LoginDataState {
-    token: string;
-}
-
 export interface LoginState {
     isFetching: boolean;
-    data: LoginDataState;
+    isAuthenticated: boolean;
     error: string;
 }
 

@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 import {
     loginAction,
     registerAction,
@@ -8,7 +10,7 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
 } from './actions';
-import { RegisterDataState, LoginDataState, LoginState } from './models';
+import { RegisterDataState, LoginState } from './models';
 
 const initialRegisterState = {
     isFetching: false,
@@ -16,13 +18,9 @@ const initialRegisterState = {
     error: '',
 };
 
-const initialLoginDataState: LoginDataState = {
-    token: '',
-};
-
 const initialLoginState: LoginState = {
     isFetching: false,
-    data: initialLoginDataState,
+    isAuthenticated: Cookies.get('token') ? true : false,
     error: '',
 };
 
@@ -62,13 +60,14 @@ export const login = (state: LoginState = initialLoginState, action: loginAction
             return {
                 ...state,
                 isFetching: false,
-                data: action.payload,
+                isAuthenticated: true,
                 error: '',
             };
         case LOGIN_FAILURE:
             return {
                 ...state,
                 isFetching: false,
+                isAuthenticated: false,
                 error: action.payload,
             };
         default:
